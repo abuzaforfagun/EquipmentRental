@@ -7,5 +7,6 @@ namespace EquipmentRental.Repository.Presistance
     {
         IList<Equipment> Equipments { get; set; }
         IList<Order> Orders { get; set; }
+        IList<Customer> Customers { get; set; }
     }
 }

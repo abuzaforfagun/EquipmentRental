@@ -28,13 +28,21 @@ namespace EquipmentRental.Controllers
         [HttpPost]
         public IActionResult Add(OrderResource order)
         {
-            if (order == null)
+            if (order == null || order.CustomerId == 0 || order.EquipmentId == 0 || order.DaysOfRent == 0)
             {
                 logger.LogError($"[post] api/order called with bad data. Data: {JsonConvert.SerializeObject(order)}");
                 return BadRequest();
             }
 
             var equipment = unitOfWork.EquipementRepository.Get(order.EquipmentId);
+            var customer = unitOfWork.CustomerRepository.Get(order.CustomerId);
+
+            if (customer == null)
+            {
+                logger.LogError($"[post] api/order called with invalid customer id({order.CustomerId})");
+                return BadRequest();
+            }
+
             var _order = new Order(equipment, order.DaysOfRent);
             unitOfWork.OrderRepository.Add(_order);
             return Ok(_order);

@@ -32,6 +32,11 @@ namespace EquipmentRental.Tests.Presistance
                 new Order(Equipments[0], 5),
                 new Order(Equipments[1], 1)
             };
+
+            Customers = new List<Customer>
+            {
+                new Customer{ Id = 1, Email = "jhon@email.com", Password = "123" }
+            };
         }
     }
 }

@@ -8,6 +8,7 @@ namespace EquipmentRental.Repository.Presistance
     {
         public IList<Equipment> Equipments { get; set; }
         public IList<Order> Orders { get; set; }
+        public IList<Customer> Customers { get; set; }
 
         public EquipmentDbContext()
         {
@@ -21,6 +22,10 @@ namespace EquipmentRental.Repository.Presistance
             };
 
             Orders = new List<Order>();
+            Customers = new List<Customer>
+            {
+                new Customer{ Id = 1, Email = "jhon@email.com", Password = "test#21" }
+            };
         }
     }
 }

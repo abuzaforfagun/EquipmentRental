@@ -4,5 +4,8 @@
     {
         IEquipementRepository EquipementRepository { get; set; }
         IOrderRepository OrderRepository { get; set; }
+
+        ICustomerRepository CustomerRepository { get; set; }
+        
     }
 }

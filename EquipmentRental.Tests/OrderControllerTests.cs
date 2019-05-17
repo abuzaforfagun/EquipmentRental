@@ -19,6 +19,7 @@ namespace EquipmentRental.Tests
         private IUnitOfWork unitOfWork;
         private Mock<ILogger<EquipmentsController>> mockLogger;
         private IEquipmentDbContext context;
+        private OrderResource _validOrderResource;
         public OrderControllerTests()
         {
             context = new InMemoryDbContext();
@@ -26,12 +27,13 @@ namespace EquipmentRental.Tests
 
             mockLogger = new Mock<ILogger<EquipmentsController>>();
             controller = new OrderController(unitOfWork, mockLogger.Object);
+            _validOrderResource = new OrderResource {DaysOfRent = 1, EquipmentId = 1, CustomerId = 1};
         }
 
         [Fact]
         public void Add_CallWith_ValidOrder_ShouldReturn_OkResult()
         {
-            var result = controller.Add(new OrderResource(){DaysOfRent = 1, EquipmentId = 1});
+            var result = controller.Add(_validOrderResource);
 
             Assert.True(result is OkObjectResult);
         }
@@ -42,6 +44,37 @@ namespace EquipmentRental.Tests
             var result = controller.Add(null);
 
             Assert.True(result is BadRequestResult);
+        }
+
+        [Fact]
+        public void Add_CallWithOut_CustomerId_ShouldReturn_BadRequest()
+        {
+            var result = controller.Add(new OrderResource() { DaysOfRent = 1, EquipmentId = 1 });
+
+            Assert.True(result is BadRequestResult);
+        }
+
+        [Fact]
+        public void Add_CallWith_InvalidCustomerId_ShouldReturn_BadRequest()
+        {
+            var result = controller.Add(new OrderResource() {DaysOfRent = 1, EquipmentId = 1, CustomerId = 12});
+            Assert.True(result is BadRequestResult);
+        }
+
+        [Fact]
+        public void Add_CallWith_InvalidCustomerId_Should_AddLog()
+        {
+            var result = controller.Add(new OrderResource() { DaysOfRent = 1, EquipmentId = 1, CustomerId = 12 });
+
+            mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
+        }
+
+        [Fact]
+        public void Add_CallWithOut_CustomerId_Should_AddLog()
+        {
+            var result = controller.Add(new OrderResource() { DaysOfRent = 1, EquipmentId = 1 });
+
+            mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
         }
 
         [Fact]
@@ -56,13 +89,8 @@ namespace EquipmentRental.Tests
         public void Add_CallWith_ValidData_ShouldAdd_DataInStorage()
         {
             var ordersBeforeAdd = unitOfWork.OrderRepository.GetAll().Count;
-
-            var orderResource = new OrderResource
-            {
-                DaysOfRent = 2,
-                EquipmentId = 2
-            };
-            controller.Add(orderResource);
+            
+            controller.Add(_validOrderResource);
 
             var ordersAfterAdd = unitOfWork.OrderRepository.GetAll().Count;
             Assert.Equal(ordersAfterAdd, ordersBeforeAdd + 1);
@@ -71,16 +99,11 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Add_CallWith_ValidData_ShouldReturn_NewlyAddedOrder()
         {
-            var orderResource = new OrderResource
-            {
-                DaysOfRent = 4,
-                EquipmentId = 1
-            };
-            var equipment = unitOfWork.EquipementRepository.Get(orderResource.EquipmentId);
-            var result = (controller.Add(orderResource) as OkObjectResult).Value as Order;
+            var equipment = unitOfWork.EquipementRepository.Get(_validOrderResource.EquipmentId);
+            var result = (controller.Add(_validOrderResource) as OkObjectResult).Value as Order;
 
             Assert.Equal(equipment, result.Equipment);
-            Assert.Equal(orderResource.DaysOfRent, result.RentOfDays);
+            Assert.Equal(_validOrderResource.DaysOfRent, result.RentOfDays);
         }
     }
 }
