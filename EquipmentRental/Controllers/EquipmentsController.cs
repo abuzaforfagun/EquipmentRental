@@ -16,12 +16,14 @@ namespace EquipmentRental.Controllers
             this.repository = repository;
         }
 
+        [HttpGet]
         public IActionResult Get()
         {
             IList<Equipment> result = repository.GetAll();
             return Ok(result);
         }
 
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Ok("Item 1");

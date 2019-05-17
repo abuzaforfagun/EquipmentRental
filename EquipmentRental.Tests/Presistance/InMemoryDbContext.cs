@@ -2,19 +2,15 @@
 using EquipmentRental.Domain.EquipementTypes;
 using EquipmentRental.Domain.Models;
 using EquipmentRental.Repository;
+using EquipmentRental.Repository.Presistance;
 
 namespace EquipmentRental.Tests.Presistance
 {
-    public class InMemoryEquipementRepository : EquipmentRepository
+    public class InMemoryDbContext : DbContext
     {
-        public InMemoryEquipementRepository():base(SetDummyList())
+        public InMemoryDbContext()
         {
-            
-        }
-
-        private static IList<Equipment> SetDummyList()
-        {
-            var data = new List<Equipment>
+            Equipments = new List<Equipment>
             {
                 new Equipment()
                 {
@@ -28,7 +24,6 @@ namespace EquipmentRental.Tests.Presistance
                 },
 
             };
-            return data;
         }
     }
 }

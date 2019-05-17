@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using EquipmentRental.Controllers;
 using EquipmentRental.Domain.Models;
+using EquipmentRental.Repository;
 using EquipmentRental.Tests.Presistance;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -11,11 +12,14 @@ namespace EquipmentRental.Tests
     public class EquipmentControllerTests
     {
         private EquipmentsController controller;
-        private InMemoryEquipementRepository repository;
+        private InMemoryDbContext dbContext;
+        private EquipmentRepository repostiroy;
+
         public EquipmentControllerTests()
         {
-            repository = new InMemoryEquipementRepository();
-            controller = new EquipmentsController(repository);
+            dbContext = new InMemoryDbContext();
+            repostiroy = new EquipmentRepository(dbContext);
+            controller = new EquipmentsController(repostiroy);
         }
 
         [Fact]
@@ -37,9 +41,9 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_NoParameters_ShoulReturn_EmptyList_When_NoEquipementAvailable()
         {
-            repository.Equipements = new List<Equipment>();
+            dbContext.Equipments = new List<Equipment>();
 
-            var controller = new EquipmentsController(repository);
+            var controller = new EquipmentsController(repostiroy);
 
             var result = (controller.Get() as OkObjectResult).Value as IList<Equipment>;
 
