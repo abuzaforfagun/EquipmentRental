@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EquipmentRental.Domain.EquipmentTypes;
+﻿using EquipmentRental.Domain.EquipmentTypes;
 
 namespace EquipmentRental.Domain.Models
 {
@@ -9,5 +6,16 @@ namespace EquipmentRental.Domain.Models
     {
         public string Title { get; set; }
         public IEquipmentType EquipmentType { get; set; }
+
+        public Equipment(string title, IEquipmentType type)
+        {
+            this.Title = title;
+            this.EquipmentType = type;
+        }
+
+        public Equipment()
+        {
+            
+        }
     }
 }
