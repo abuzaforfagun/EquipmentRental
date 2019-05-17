@@ -6,9 +6,10 @@ namespace EquipmentRental.Domain.EquipementTypes
     public class SpecializedEquipement : IEquipmentType
     {
         private const int NumberOfDaysForPrimumFee = 3;
-        public string Name { get; set; }
 
         public int LoyalityPoint => 1;
+
+        public string Name => "Specialized";
 
         public double GetPrice(int daysOfRent)
         {

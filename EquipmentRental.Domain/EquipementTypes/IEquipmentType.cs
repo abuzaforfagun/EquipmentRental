@@ -3,7 +3,7 @@
     public interface IEquipmentType
     {
         int LoyalityPoint { get; }
-        string Name { get; set; }
+        string Name { get; }
         double GetPrice(int daysOfRent);
     }
 }

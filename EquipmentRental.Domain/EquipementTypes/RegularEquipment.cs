@@ -6,7 +6,7 @@ namespace EquipmentRental.Domain.EquipementTypes
     public class RegularEquipment : IEquipmentType
     {
         private const int NumberOfDaysForPrimumFee = 2;
-        public string Name { get; set; }
+        public string Name => "Regular";
 
         public int LoyalityPoint => 1;
 
