@@ -19,6 +19,8 @@ namespace EquipmentRental.Repository.Presistance
                 new Equipment(4, "Volvo steamroller", new RegularEquipment()),
                 new Equipment(5, "Bosch jackhammer", new SpecializedEquipement()),
             };
+
+            Orders = new List<Order>();
         }
     }
 }

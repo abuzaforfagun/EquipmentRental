@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EquipmentRental.Domain.Models;
+using EquipmentRental.Domain.Resources;
 using EquipmentRental.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,14 +21,24 @@ namespace EquipmentRental.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        public IActionResult Add(Order order)
+        [HttpPost]
+        public IActionResult Add(OrderResource order)
         {
             if (order == null)
             {
                 return BadRequest();
             }
-            unitOfWork.OrderRepository.Add(order);
-            return Ok(order);
+
+            var equipment = unitOfWork.EquipementRepository.Get(order.EquipmentId);
+            var _order = new Order(equipment, order.DaysOfRent);
+            unitOfWork.OrderRepository.Add(_order);
+            return Ok(_order);
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(unitOfWork.OrderRepository.GetAll());
         }
     }
 }

@@ -6,7 +6,7 @@ namespace EquipmentRental.Domain.Models
     {
         public Equipment Equipment { get; set; }
         public int RentOfDays { get; set; }
-        
+        public double Price { get; }
 
         public Order(Equipment equipment)
         {
@@ -17,7 +17,9 @@ namespace EquipmentRental.Domain.Models
         {
             Equipment = equipment;
             RentOfDays = rentOfDays;
+            Price = GetPrice();
         }
+        
 
         public double GetPrice()
         {

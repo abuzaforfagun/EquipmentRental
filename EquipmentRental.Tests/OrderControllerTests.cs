@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EquipmentRental.Controllers;
+﻿using EquipmentRental.Controllers;
 using EquipmentRental.Domain.EquipementTypes;
 using EquipmentRental.Domain.Models;
+using EquipmentRental.Domain.Resources;
 using EquipmentRental.Repository;
 using EquipmentRental.Repository.Presistance;
 using EquipmentRental.Tests.Presistance;
@@ -28,7 +26,7 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Add_CallWith_ValidOrder_ShouldReturn_OkResult()
         {
-            var result = controller.Add(new Order(It.IsAny<Equipment>()));
+            var result = controller.Add(new OrderResource());
 
             Assert.True(result is OkObjectResult);
         }
@@ -46,8 +44,12 @@ namespace EquipmentRental.Tests
         {
             var ordersBeforeAdd = unitOfWork.OrderRepository.GetAll().Count;
 
-            var order = new Order(new Equipment(10, "Order no 10", new RegularEquipment()));
-            controller.Add(order);
+            var orderResource = new OrderResource
+            {
+                DaysOfRent = 2,
+                EquipmentId = 10
+            };
+            controller.Add(orderResource);
 
             var ordersAfterAdd = unitOfWork.OrderRepository.GetAll().Count;
             Assert.Equal(ordersAfterAdd, ordersBeforeAdd + 1);
@@ -56,11 +58,16 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Add_CallWith_ValidData_ShouldReturn_NewlyAddedOrder()
         {
-            var order = new Order(new Equipment(10, "Order no 10", new RegularEquipment()));
+            var orderResource = new OrderResource
+            {
+                DaysOfRent = 4,
+                EquipmentId = 1
+            };
+            var equipment = unitOfWork.EquipementRepository.Get(orderResource.EquipmentId);
+            var result = (controller.Add(orderResource) as OkObjectResult).Value as Order;
 
-            var result = (controller.Add(order) as OkObjectResult).Value as Order;
-
-            Assert.Equal(result, order);
+            Assert.Equal(equipment, result.Equipment);
+            Assert.Equal(orderResource.DaysOfRent, result.RentOfDays);
         }
     }
 }
