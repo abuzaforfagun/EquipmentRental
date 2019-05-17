@@ -1,18 +1,16 @@
-﻿using System;
-using EquipmentRental.Domain.Models;
+﻿using EquipmentRental.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentRental.Domain.EquipementTypes;
 using EquipmentRental.Repository.Presistance;
 
 namespace EquipmentRental.Repository
 {
     public class EquipmentRepository : IEquipementRepository
     {
-        private readonly IDbContext context;
+        private readonly IEquipmentDbContext context;
 
 
-        public EquipmentRepository(IDbContext context)
+        public EquipmentRepository(IEquipmentDbContext context)
         {
             this.context = context;
         }

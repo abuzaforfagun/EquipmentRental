@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using EquipmentRental.Domain.Models;
 using EquipmentRental.Repository.Presistance;
 
@@ -9,9 +7,9 @@ namespace EquipmentRental.Repository
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly IDbContext context;
+        private readonly IEquipmentDbContext context;
 
-        public OrderRepository(IDbContext context)
+        public OrderRepository(IEquipmentDbContext context)
         {
             this.context = context;
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using EquipmentRental.Domain.EquipmentTypes;
+﻿using EquipmentRental.Domain.EquipmentTypes;
 
 namespace EquipmentRental.Domain.Models
 {

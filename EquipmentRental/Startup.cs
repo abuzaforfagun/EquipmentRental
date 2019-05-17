@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EquipmentRental.Repository;
+﻿using EquipmentRental.Repository;
 using EquipmentRental.Repository.Presistance;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace EquipmentRental
 {
@@ -28,7 +21,7 @@ namespace EquipmentRental
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<IDbContext, DbContext>();
+            services.AddScoped<IEquipmentDbContext, EquipmentDbContext>();
             services.AddScoped<IEquipementRepository, EquipmentRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }

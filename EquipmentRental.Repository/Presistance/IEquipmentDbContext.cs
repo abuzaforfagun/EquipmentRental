@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EquipmentRental.Repository.Presistance
 {
-    public interface IDbContext
+    public interface IEquipmentDbContext
     {
         IList<Equipment> Equipments { get; set; }
         IList<Order> Orders { get; set; }

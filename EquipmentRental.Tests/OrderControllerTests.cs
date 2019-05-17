@@ -18,7 +18,7 @@ namespace EquipmentRental.Tests
         private OrderController controller;
         private IUnitOfWork unitOfWork;
         private Mock<ILogger<EquipmentsController>> mockLogger;
-        private IDbContext context;
+        private IEquipmentDbContext context;
         public OrderControllerTests()
         {
             context = new InMemoryDbContext();

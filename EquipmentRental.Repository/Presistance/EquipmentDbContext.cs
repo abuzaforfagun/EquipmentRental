@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace EquipmentRental.Repository.Presistance
 {
-    public class DbContext : IDbContext
+    public class EquipmentDbContext : IEquipmentDbContext
     {
         public IList<Equipment> Equipments { get; set; }
         public IList<Order> Orders { get; set; }
 
-        public DbContext()
+        public EquipmentDbContext()
         {
             Equipments = new List<Equipment>
             {

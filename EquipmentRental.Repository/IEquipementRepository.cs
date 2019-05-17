@@ -1,5 +1,4 @@
-﻿using System;
-using EquipmentRental.Domain.Models;
+﻿using EquipmentRental.Domain.Models;
 using System.Collections.Generic;
 
 namespace EquipmentRental.Repository

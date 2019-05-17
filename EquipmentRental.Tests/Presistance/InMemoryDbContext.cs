@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using EquipmentRental.Domain.EquipementTypes;
 using EquipmentRental.Domain.Models;
-using EquipmentRental.Repository;
 using EquipmentRental.Repository.Presistance;
 
 namespace EquipmentRental.Tests.Presistance
 {
-    public class InMemoryDbContext : DbContext
+    public class InMemoryDbContext : EquipmentDbContext
     {
         public InMemoryDbContext()
         {

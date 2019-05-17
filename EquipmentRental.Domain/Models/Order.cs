@@ -1,6 +1,4 @@
-﻿using EquipmentRental.Domain.EquipmentTypes;
-
-namespace EquipmentRental.Domain.Models
+﻿namespace EquipmentRental.Domain.Models
 {
     public class Order
     {

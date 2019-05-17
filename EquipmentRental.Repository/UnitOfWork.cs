@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EquipmentRental.Repository.Presistance;
+﻿using EquipmentRental.Repository.Presistance;
 
 namespace EquipmentRental.Repository
 {
@@ -10,7 +7,7 @@ namespace EquipmentRental.Repository
         public IEquipementRepository EquipementRepository { get; set; }
         public IOrderRepository OrderRepository { get; set; }
 
-        public UnitOfWork(IDbContext context)
+        public UnitOfWork(IEquipmentDbContext context)
         {
             EquipementRepository = new EquipmentRepository(context);
             OrderRepository = new OrderRepository(context);
