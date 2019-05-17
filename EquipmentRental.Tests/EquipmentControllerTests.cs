@@ -6,6 +6,8 @@ using EquipmentRental.Domain.Models;
 using EquipmentRental.Repository;
 using EquipmentRental.Tests.Presistance;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Internal;
 using Moq;
 using Xunit;
 
@@ -16,12 +18,15 @@ namespace EquipmentRental.Tests
         private EquipmentsController controller;
         private InMemoryDbContext dbContext;
         private UnitOfWork unitOfWork;
+        private Mock<ILogger<EquipmentsController>> mockLogger;
 
         public EquipmentControllerTests()
         {
             dbContext = new InMemoryDbContext();
             unitOfWork = new UnitOfWork(dbContext);
-            controller = new EquipmentsController(unitOfWork);
+            mockLogger = new Mock<ILogger<EquipmentsController>>();
+            
+            controller = new EquipmentsController(unitOfWork, mockLogger.Object);
         }
 
         [Fact]
@@ -68,6 +73,15 @@ namespace EquipmentRental.Tests
         }
 
         [Fact]
+        public void Get_CallWith_InValidEquipmentId_Should_AddLog()
+        {
+            var result = controller.Get(It.IsAny<int>());
+
+            mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
+        }
+
+        [Fact] 
+
         public void Get_CallWith_ValidEquipmentId_ShouldReturn_SpecificEquipement()
         {
             var existingEquipment = dbContext.Equipments.First();

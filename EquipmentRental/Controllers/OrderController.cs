@@ -7,6 +7,8 @@ using EquipmentRental.Domain.Resources;
 using EquipmentRental.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace EquipmentRental.Controllers
 {
@@ -15,10 +17,12 @@ namespace EquipmentRental.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly ILogger logger;
 
-        public OrderController(IUnitOfWork unitOfWork)
+        public OrderController(IUnitOfWork unitOfWork, ILogger logger)
         {
             this.unitOfWork = unitOfWork;
+            this.logger = logger;
         }
 
         [HttpPost]
@@ -26,6 +30,7 @@ namespace EquipmentRental.Controllers
         {
             if (order == null)
             {
+                logger.LogError($"[post] api/order called with bad data. Data: {JsonConvert.SerializeObject(order)}");
                 return BadRequest();
             }
 

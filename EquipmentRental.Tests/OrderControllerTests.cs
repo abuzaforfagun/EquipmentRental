@@ -5,6 +5,10 @@ using EquipmentRental.Repository;
 using EquipmentRental.Repository.Presistance;
 using EquipmentRental.Tests.Presistance;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Internal;
+using Moq;
+using System;
 using Xunit;
 
 namespace EquipmentRental.Tests
@@ -13,12 +17,15 @@ namespace EquipmentRental.Tests
     {
         private OrderController controller;
         private IUnitOfWork unitOfWork;
+        private Mock<ILogger<EquipmentsController>> mockLogger;
         private IDbContext context;
         public OrderControllerTests()
         {
             context = new InMemoryDbContext();
             unitOfWork = new UnitOfWork(context);
-            controller = new OrderController(unitOfWork);
+
+            mockLogger = new Mock<ILogger<EquipmentsController>>();
+            controller = new OrderController(unitOfWork, mockLogger.Object);
         }
 
         [Fact]
@@ -35,6 +42,14 @@ namespace EquipmentRental.Tests
             var result = controller.Add(null);
 
             Assert.True(result is BadRequestResult);
+        }
+
+        [Fact]
+        public void Add_CallWith_InValidEquipmentId_Should_AddLog()
+        {
+            var result = controller.Add(It.IsAny<OrderResource>());
+
+            mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
         }
 
         [Fact]

@@ -15,6 +15,7 @@ namespace EquipmentRental.Repository
         {
             this.context = context;
         }
+
         public void Add(Order order)
         {
             context.Orders.Add(order);

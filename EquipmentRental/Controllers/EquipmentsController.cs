@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EquipmentRental.Domain.Models;
 using EquipmentRental.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace EquipmentRental.Controllers
 {
@@ -11,10 +12,12 @@ namespace EquipmentRental.Controllers
     public class EquipmentsController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly ILogger<EquipmentsController> logger;
 
-        public EquipmentsController(IUnitOfWork unitOfWork)
+        public EquipmentsController(IUnitOfWork unitOfWork, ILogger<EquipmentsController> logger)
         {
             this.unitOfWork = unitOfWork;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -31,6 +34,7 @@ namespace EquipmentRental.Controllers
             var result = unitOfWork.EquipementRepository.Get(id);
             if (result == null)
             {
+                logger.LogError($"api/controller/get/{id} Not found");
                 return NotFound();
             }
             return Ok(result);
