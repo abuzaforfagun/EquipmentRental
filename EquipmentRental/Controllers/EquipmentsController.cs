@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EquipmentRental.Domain.Models;
 using EquipmentRental.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,8 +18,13 @@ namespace EquipmentRental.Controllers
 
         public IActionResult Get()
         {
-            IList<string> result = repository.GetAll();
+            IList<Equipment> result = repository.GetAll();
             return Ok(result);
+        }
+
+        public IActionResult Get(int id)
+        {
+            return Ok("Item 1");
         }
     }
 }

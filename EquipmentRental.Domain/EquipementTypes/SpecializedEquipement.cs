@@ -8,6 +8,8 @@ namespace EquipmentRental.Domain.EquipementTypes
         private const int NumberOfDaysForPrimumFee = 3;
         public string Name { get; set; }
 
+        public int LoyalityPoint => 1;
+
         public double GetPrice(int daysOfRent)
         {
             var preimumFee = daysOfRent > NumberOfDaysForPrimumFee ? RentalFee.PremiumDailyFee * NumberOfDaysForPrimumFee : RentalFee.PremiumDailyFee * daysOfRent;

@@ -6,6 +6,11 @@ namespace EquipmentRental.Domain.EquipementTypes
     {
         public string Name { get; set; }
 
+        public int LoyalityPoint
+        {
+            get { return 2; }
+        }
+
         public double GetPrice(int daysOfRent)
         {
             return Constants.RentalFee.OneTimeRentalFee + (Constants.RentalFee.PremiumDailyFee * daysOfRent);

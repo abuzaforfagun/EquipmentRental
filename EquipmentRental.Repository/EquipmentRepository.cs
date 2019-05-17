@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using EquipmentRental.Domain.Models;
+using System.Collections.Generic;
 
 namespace EquipmentRental.Repository
 {
     public class EquipmentRepository : IEquipementRepository
     {
-        public IList<string> Equipements { get; set; }
+        public IList<Equipment> Equipements { get; set; }
 
         public EquipmentRepository()
         {
             
         }
-        public EquipmentRepository(IList<string> equipements)
+        public EquipmentRepository(IList<Equipment> equipements)
         {
             Equipements = equipements;
         }
 
-        public IList<string> GetAll()
+        public IList<Equipment> GetAll()
         {
             return Equipements;
         }
