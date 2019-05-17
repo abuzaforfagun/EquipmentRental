@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace EquipmentRental
 {
@@ -21,9 +22,11 @@ namespace EquipmentRental
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<IEquipmentDbContext, EquipmentDbContext>();
-            services.AddScoped<IEquipementRepository, EquipmentRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //TODO: Use Scopped when used real presistance
+            services.AddSingleton<IEquipmentDbContext, EquipmentDbContext>();
+            services.AddSingleton<IEquipementRepository, EquipmentRepository>();
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
