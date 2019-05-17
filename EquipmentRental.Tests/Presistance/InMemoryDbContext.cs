@@ -14,11 +14,13 @@ namespace EquipmentRental.Tests.Presistance
             {
                 new Equipment()
                 {
+                    Id = 1,
                     Title = "Caterpillar bulldozer",
                     EquipmentType = new HeavyEquipement()
                 },
                 new Equipment()
                 {
+                    Id = 2,
                     Title = "KamAZ truck",
                     EquipmentType = new RegularEquipment()
                 },

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using EquipmentRental.Controllers;
 using EquipmentRental.Domain.Models;
 using EquipmentRental.Repository;
@@ -53,7 +55,8 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_ValidEquipmentId_ShouldReturn_OkResponse()
         {
-            var result = controller.Get(It.IsAny<int>());
+            var existingEquipment = dbContext.Equipments.First();
+            var result = controller.Get(existingEquipment.Id);
 
             Assert.True(result is OkObjectResult);
         }
@@ -63,16 +66,16 @@ namespace EquipmentRental.Tests
         {
             var result = controller.Get(It.IsAny<int>());
 
-            Assert.True(result is OkObjectResult);
+            Assert.True(result is NotFoundResult);
         }
 
         [Fact]
         public void Get_CallWith_ValidEquipmentId_ShouldReturn_SpecificEquipement()
         {
-            var result = controller.Get(It.IsAny<int>());
+            var existingEquipment = dbContext.Equipments.First();
+            var result = (controller.Get(existingEquipment.Id) as OkObjectResult).Value as Equipment;
 
-            Assert.True(result is OkObjectResult);
+            Assert.Equal(existingEquipment, result);
         }
     }
 }
-        

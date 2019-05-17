@@ -12,11 +12,11 @@ namespace EquipmentRental.Repository.Presistance
         {
             Equipments = new List<Equipment>
             {
-                new Equipment("Caterpillar bulldozer", new HeavyEquipement()),
-                new Equipment("KamAZ truck", new RegularEquipment()),
-                new Equipment("Komatsu crane", new HeavyEquipement()),
-                new Equipment("Volvo steamroller", new RegularEquipment()),
-                new Equipment("Bosch jackhammer", new SpecializedEquipement()),
+                new Equipment(1, "Caterpillar bulldozer", new HeavyEquipement()),
+                new Equipment(2, "KamAZ truck", new RegularEquipment()),
+                new Equipment(3, "Komatsu crane", new HeavyEquipement()),
+                new Equipment(4, "Volvo steamroller", new RegularEquipment()),
+                new Equipment(5, "Bosch jackhammer", new SpecializedEquipement()),
             };
         }
     }
