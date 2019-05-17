@@ -26,6 +26,13 @@ namespace EquipmentRental.Tests.Presistance
                 },
 
             };
+
+            Orders = new List<Order>
+            {
+                new Order(Equipments[0], 2),
+                new Order(Equipments[0], 5),
+                new Order(Equipments[1], 1)
+            };
         }
     }
 }

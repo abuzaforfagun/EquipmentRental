@@ -6,5 +6,6 @@ namespace EquipmentRental.Repository.Presistance
     public interface IDbContext
     {
         IList<Equipment> Equipments { get; set; }
+        IList<Order> Orders { get; set; }
     }
 }

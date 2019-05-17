@@ -7,6 +7,7 @@ namespace EquipmentRental.Repository.Presistance
     public class DbContext : IDbContext
     {
         public IList<Equipment> Equipments { get; set; }
+        public IList<Order> Orders { get; set; }
 
         public DbContext()
         {
