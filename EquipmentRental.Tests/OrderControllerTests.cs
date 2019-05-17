@@ -1,12 +1,10 @@
 ﻿using EquipmentRental.Controllers;
-using EquipmentRental.Domain.EquipementTypes;
 using EquipmentRental.Domain.Models;
 using EquipmentRental.Domain.Resources;
 using EquipmentRental.Repository;
 using EquipmentRental.Repository.Presistance;
 using EquipmentRental.Tests.Presistance;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 using Xunit;
 
 namespace EquipmentRental.Tests
@@ -26,7 +24,7 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Add_CallWith_ValidOrder_ShouldReturn_OkResult()
         {
-            var result = controller.Add(new OrderResource());
+            var result = controller.Add(new OrderResource(){DaysOfRent = 1, EquipmentId = 1});
 
             Assert.True(result is OkObjectResult);
         }
@@ -47,7 +45,7 @@ namespace EquipmentRental.Tests
             var orderResource = new OrderResource
             {
                 DaysOfRent = 2,
-                EquipmentId = 10
+                EquipmentId = 2
             };
             controller.Add(orderResource);
 
