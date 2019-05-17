@@ -18,14 +18,15 @@ namespace EquipmentRental.Domain.Tests
         }
 
         [Fact]
-        public void Constractor_WithEquipmentRentOfDaysParams_ShouldAssign_PassedProperties()
+        public void Constractor_WithEquipmentCustomerRentOfDaysParams_ShouldAssign_PassedProperties()
         {
-            var order = new Order(new Equipment(2, "Eq 2", new SpecializedEquipement()), 2);
+            var order = new Order(new Equipment(2, "Eq 2", new SpecializedEquipement()), 
+                new Customer{Email = "email@em.com", Id=1, Name = "abc", Password = "123"}, 2);
 
             Assert.Equal("Eq 2", order.Equipment.Title);
+            Assert.Equal("email@em.com", order.Customer.Email);
             Assert.Equal(2, order.RentOfDays);
             Assert.Equal(typeof(SpecializedEquipement), order.Equipment.EquipmentType.GetType());
         }
-
     }
 }

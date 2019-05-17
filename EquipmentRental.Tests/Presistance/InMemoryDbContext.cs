@@ -26,16 +26,16 @@ namespace EquipmentRental.Tests.Presistance
 
             };
 
-            Orders = new List<Order>
-            {
-                new Order(Equipments[0], 2),
-                new Order(Equipments[0], 5),
-                new Order(Equipments[1], 1)
-            };
-
             Customers = new List<Customer>
             {
                 new Customer{ Id = 1, Email = "jhon@email.com", Password = "123" }
+            };
+
+            Orders = new List<Order>
+            {
+                new Order(Equipments[0], Customers[0], 2),
+                new Order(Equipments[0], Customers[0], 5),
+                new Order(Equipments[1], Customers[0], 1)
             };
         }
     }

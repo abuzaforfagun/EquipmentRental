@@ -35,6 +35,13 @@ namespace EquipmentRental.Controllers
             }
 
             var equipment = unitOfWork.EquipementRepository.Get(order.EquipmentId);
+
+            if (equipment == null)
+            {
+                logger.LogError($"[post] api/order called with invalid equipment id({order.EquipmentId})");
+                return BadRequest();
+            }
+
             var customer = unitOfWork.CustomerRepository.Get(order.CustomerId);
 
             if (customer == null)
@@ -43,7 +50,7 @@ namespace EquipmentRental.Controllers
                 return BadRequest();
             }
 
-            var _order = new Order(equipment, order.DaysOfRent);
+            var _order = new Order(equipment, customer, order.DaysOfRent);
             unitOfWork.OrderRepository.Add(_order);
             return Ok(_order);
         }

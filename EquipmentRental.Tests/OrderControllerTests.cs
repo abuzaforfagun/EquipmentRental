@@ -64,7 +64,7 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Add_CallWith_InvalidCustomerId_Should_AddLog()
         {
-            var result = controller.Add(new OrderResource() { DaysOfRent = 1, EquipmentId = 1, CustomerId = 12 });
+            var result = controller.Add(new OrderResource() { DaysOfRent = 1, EquipmentId = 1, CustomerId = 111 });
 
             mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
         }
@@ -78,9 +78,16 @@ namespace EquipmentRental.Tests
         }
 
         [Fact]
+        public void Add_CallWith_InvalidEquipmentId_ShouldReturn_BadRequest()
+        {
+            var result = controller.Add(new OrderResource() { DaysOfRent = 1, EquipmentId = 1111, CustomerId = 1 });
+            Assert.True(result is BadRequestResult);
+        }
+
+        [Fact]
         public void Add_CallWith_InValidEquipmentId_Should_AddLog()
         {
-            var result = controller.Add(It.IsAny<OrderResource>());
+            var result = controller.Add(new OrderResource() { DaysOfRent = 1, EquipmentId = 100, CustomerId = 1 });
 
             mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
         }

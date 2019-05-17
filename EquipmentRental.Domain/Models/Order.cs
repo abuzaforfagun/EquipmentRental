@@ -2,7 +2,9 @@
 {
     public class Order
     {
+
         public Equipment Equipment { get; set; }
+        public Customer Customer { get; set; }
         public int RentOfDays { get; set; }
         public double Price { get; }
 
@@ -11,9 +13,10 @@
             Equipment = equipment;
         }
 
-        public Order(Equipment equipment, int rentOfDays)
+        public Order(Equipment equipment, Customer customer, int rentOfDays)
         {
             Equipment = equipment;
+            Customer = customer;
             RentOfDays = rentOfDays;
             Price = GetPrice();
         }
