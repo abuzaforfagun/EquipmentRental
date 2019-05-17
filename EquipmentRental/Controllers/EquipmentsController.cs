@@ -10,17 +10,17 @@ namespace EquipmentRental.Controllers
     [ApiController]
     public class EquipmentsController : ControllerBase
     {
-        private readonly IEquipementRepository repository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public EquipmentsController(IEquipementRepository repository)
+        public EquipmentsController(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            IList<Equipment> result = repository.GetAll();
+            IList<Equipment> result = unitOfWork.EquipementRepository.GetAll();
             return Ok(result);
         }
 
@@ -28,7 +28,7 @@ namespace EquipmentRental.Controllers
         [Route("{id}")]
         public IActionResult Get(int id)
         {
-            var result = repository.Get(id);
+            var result = unitOfWork.EquipementRepository.Get(id);
             if (result == null)
             {
                 return NotFound();

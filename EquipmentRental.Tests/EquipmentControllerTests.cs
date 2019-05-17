@@ -15,13 +15,13 @@ namespace EquipmentRental.Tests
     {
         private EquipmentsController controller;
         private InMemoryDbContext dbContext;
-        private EquipmentRepository repostiroy;
+        private UnitOfWork unitOfWork;
 
         public EquipmentControllerTests()
         {
             dbContext = new InMemoryDbContext();
-            repostiroy = new EquipmentRepository(dbContext);
-            controller = new EquipmentsController(repostiroy);
+            unitOfWork = new UnitOfWork(dbContext);
+            controller = new EquipmentsController(unitOfWork);
         }
 
         [Fact]
@@ -44,8 +44,6 @@ namespace EquipmentRental.Tests
         public void Get_CallWith_NoParameters_ShoulReturn_EmptyList_When_NoEquipementAvailable()
         {
             dbContext.Equipments = new List<Equipment>();
-
-            var controller = new EquipmentsController(repostiroy);
 
             var result = (controller.Get() as OkObjectResult).Value as IList<Equipment>;
 

@@ -30,6 +30,7 @@ namespace EquipmentRental
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<IEquipementRepository, EquipmentRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
