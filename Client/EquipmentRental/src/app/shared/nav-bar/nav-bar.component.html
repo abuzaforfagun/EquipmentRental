@@ -10,7 +10,8 @@
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Checkout</a>
+        <a class="nav-link" href="#">Checkout <span
+            *ngIf='equipmentService.countOfAddedCartItem !== 0'>({{equipmentService.countOfAddedCartItem}})</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="tryLogout()">Logout</a>

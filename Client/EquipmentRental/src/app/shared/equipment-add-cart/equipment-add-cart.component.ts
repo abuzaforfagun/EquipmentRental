@@ -13,6 +13,9 @@ export class EquipmentAddCartComponent implements OnInit {
   ngOnInit() {
   }
 
+  addToCart(): void {
+    this.equipmentService.countOfAddedCartItem++;
+  }
   closeCart(): void {
     this.equipmentService.isAnyEquipmentSelected = false;
     this.equipmentService.selectedEquipment = null;

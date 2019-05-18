@@ -11,6 +11,7 @@ export class EquipmentService {
 
   selectedEquipment: Equipment;
   isAnyEquipmentSelected: boolean;
+  countOfAddedCartItem = 0;
   constructor(private httpService: HttpService) { }
 
   getAllEquipments(): Observable<Equipment[]> {
