@@ -10,8 +10,7 @@ import { Equipment } from '../models/equipment';
 })
 export class DashboardComponent implements OnInit {
 
-  equipments: Equipment[];
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, public equipmentService: EquipmentService) { }
 
   ngOnInit(): void {
 

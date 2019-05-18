@@ -12,7 +12,8 @@ namespace EquipmentRental.Profile
         public MappingProfile()
         {
             CreateMap<Equipment, EquipmentResource>()
-                .ForMember(destionation => destionation.Type, opt => opt.MapFrom(source => source.EquipmentType.Name))
+                .ForMember(destination => destination.Type, opt => opt.MapFrom(source => source.EquipmentType.Name))
+                .ForMember(destination => destination.LoyalityPoint, opt => opt.MapFrom(source=>source.EquipmentType.LoyalityPoint))
                 .ReverseMap();
         }
     }

@@ -3,6 +3,10 @@
     <div class="col-md-5">
       <app-equipment-table></app-equipment-table>
     </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+      <app-equipment-add-cart *ngIf="equipmentService.isAnyEquipmentSelected"></app-equipment-add-cart>
+    </div>
     <div class="col-md-6"></div>
   </div>
 </div>

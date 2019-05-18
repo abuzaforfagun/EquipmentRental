@@ -9,6 +9,8 @@ import { API } from 'src/environments/environment';
 })
 export class EquipmentService {
 
+  selectedEquipment: Equipment;
+  isAnyEquipmentSelected: boolean;
   constructor(private httpService: HttpService) { }
 
   getAllEquipments(): Observable<Equipment[]> {

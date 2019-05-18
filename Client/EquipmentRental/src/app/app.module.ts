@@ -12,6 +12,7 @@ import { HttpService } from './services/http.service';
 import { EquipmentService } from './services/equipment.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EquipmentTableComponent } from './shared/equipment-table/equipment-table.component';
+import { EquipmentAddCartComponent } from './shared/equipment-add-cart/equipment-add-cart.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EquipmentTableComponent } from './shared/equipment-table/equipment-tabl
     LoginComponent,
     DashboardComponent,
     NavBarComponent,
-    EquipmentTableComponent
+    EquipmentTableComponent,
+    EquipmentAddCartComponent
   ],
   imports: [
     BrowserModule,
