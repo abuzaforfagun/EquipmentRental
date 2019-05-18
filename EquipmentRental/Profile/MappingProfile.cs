@@ -1,9 +1,5 @@
 ﻿using EquipmentRental.Domain.Models;
 using EquipmentRental.Domain.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EquipmentRental.Profile
 {

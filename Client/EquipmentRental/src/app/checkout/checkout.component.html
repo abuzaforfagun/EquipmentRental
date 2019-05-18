@@ -2,7 +2,8 @@
   <div class="card-body">
     <h5 class="card-title">Hi {{customerName}}</h5>
     <p class="card-text">Numbers of orders: {{totalOrders}}<br />
-      Loyality point you earned: {{totalLoyalityPoint}}</p>
+      Loyality point you earned: {{totalLoyalityPoint}}<br />
+      Total price: {{totalPrice}}</p>
     <button class="btn btn-primary" *ngIf="orders.length > 0" (click)="getInvoice()">Get Invoice</button>
   </div>
 </div>

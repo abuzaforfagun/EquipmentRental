@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EquipmentRental.Domain.Resources
+﻿namespace EquipmentRental.Domain.Resources
 {
     public class EquipmentResource
     {

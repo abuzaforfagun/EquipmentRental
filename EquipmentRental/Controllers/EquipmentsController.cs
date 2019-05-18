@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using EquipmentRental.Domain.Models;
 using EquipmentRental.Domain.Resources;
 using EquipmentRental.Repository;
 using Microsoft.AspNetCore.Mvc;

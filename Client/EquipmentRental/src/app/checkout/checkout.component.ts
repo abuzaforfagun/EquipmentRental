@@ -14,14 +14,18 @@ export class CheckoutComponent implements OnInit {
   orders: Order[];
   totalOrders: number;
   totalLoyalityPoint: number;
+  totalPrice: number;
   constructor(public checkoutService: CheckoutService) { }
 
   ngOnInit() {
     this.customerName = sessionStorage.getItem('userName');
     this.checkoutService.getAllOrders(sessionStorage.getItem('userId')).subscribe(data => {
-      this.orders = data;
-      this.totalOrders = data.length;
-      this.totalLoyalityPoint = data.reduce((a, b) => a + (b['loyalityPoint'] || 0), 0);
+      if (data) {
+        this.orders = data;
+        this.totalOrders = data.length;
+        this.totalLoyalityPoint = data.reduce((a, b) => a + (b.loyalityPoint || 0), 0);
+        this.totalPrice = data.reduce((a, b) => a + (b.price || 0), 0);
+      }
     });
   }
 

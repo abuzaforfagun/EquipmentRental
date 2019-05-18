@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;
 using Moq;
 using System;
-using Microsoft.AspNetCore.Http;
 using Xunit;
 using AutoMapper;
 using EquipmentRental.Profile;
