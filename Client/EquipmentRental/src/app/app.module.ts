@@ -11,6 +11,7 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { HttpService } from './services/http.service';
 import { EquipmentService } from './services/equipment.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EquipmentTableComponent } from './shared/equipment-table/equipment-table.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    NavBarComponent
+    NavBarComponent,
+    EquipmentTableComponent
   ],
   imports: [
     BrowserModule,

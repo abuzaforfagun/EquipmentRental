@@ -11,13 +11,10 @@ import { Equipment } from '../models/equipment';
 export class DashboardComponent implements OnInit {
 
   equipments: Equipment[];
-  constructor(private authService: AuthService,
-    private equipmentService: EquipmentService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.equipmentService.getAllEquipments().subscribe(data => {
-      this.equipments = data;
-    });
+
   }
 
   tryLogout(): void {
