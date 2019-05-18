@@ -23,5 +23,10 @@ namespace EquipmentRental.Repository
         {
             return context.Orders.ToList();
         }
+
+        public IList<Order> GetByCustomer(int customerId)
+        {
+            return context.Orders.Where(o => o.Customer.Id == customerId).ToList();
+        }
     }
 }

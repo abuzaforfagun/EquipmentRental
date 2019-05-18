@@ -7,5 +7,6 @@ namespace EquipmentRental.Repository
     {
         IList<Order> GetAll();
         void Add(Order order);
+        IList<Order> GetByCustomer(int customerId);
     }
 }

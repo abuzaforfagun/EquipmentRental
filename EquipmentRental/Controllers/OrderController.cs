@@ -65,5 +65,47 @@ namespace EquipmentRental.Controllers
         {
             return Ok(unitOfWork.OrderRepository.GetAll());
         }
+
+
+
+        [HttpGet]
+        [Route("{customerId}/invoice")]
+        public IActionResult GetInvoice(int customerId)
+        {
+            var orders = unitOfWork.OrderRepository.GetByCustomer(customerId);
+
+            var content = GenerateFileFromOrders(customerId, orders);
+
+            var fileName = $"\"Invoice_{customerId}_{DateTime.Now.Ticks}\"";
+            Response.Headers.Add("Content-Disposition", $"attachment; filename={fileName}");
+            return Content(content, "text/plain");
+
+        }
+
+        private string GenerateFileFromOrders(int customerId, IList<Order> orders)
+        {
+            var text = new StringBuilder();
+            int count = 1;
+            double totalPrice = 0;
+            int loyalityPoint = 0;
+            foreach (var order in orders)
+            {
+                text.AppendLine($"#{count++}");
+                text.AppendLine($"Title: {order.Equipment.Title}");
+                text.AppendLine($"Price: {order.Price}");
+                text.AppendLine("----------------");
+                text.AppendLine();
+                totalPrice += order.Price;
+                loyalityPoint += order.Equipment.EquipmentType.LoyalityPoint;
+            }
+
+            text.AppendLine();
+            text.AppendLine("#### Summery ####");
+            text.AppendLine($"Total Price: {totalPrice}");
+            text.AppendLine($"Bonus Point: {loyalityPoint}");
+            text.AppendLine();
+
+            return text.ToString();
+        }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;
 using Moq;
 using System;
+using Microsoft.AspNetCore.Http;
 using Xunit;
 
 namespace EquipmentRental.Tests
@@ -17,7 +18,7 @@ namespace EquipmentRental.Tests
     {
         private OrderController controller;
         private IUnitOfWork unitOfWork;
-        private Mock<ILogger<EquipmentsController>> mockLogger;
+        private Mock<ILogger<OrderController>> mockLogger;
         private IEquipmentDbContext context;
         private OrderResource _validOrderResource;
         public OrderControllerTests()
@@ -25,7 +26,7 @@ namespace EquipmentRental.Tests
             context = new InMemoryDbContext();
             unitOfWork = new UnitOfWork(context);
 
-            mockLogger = new Mock<ILogger<EquipmentsController>>();
+            mockLogger = new Mock<ILogger<OrderController>>();
             controller = new OrderController(unitOfWork, mockLogger.Object);
             _validOrderResource = new OrderResource {DaysOfRent = 1, EquipmentId = 1, CustomerId = 1};
         }
@@ -112,5 +113,6 @@ namespace EquipmentRental.Tests
             Assert.Equal(equipment, result.Equipment);
             Assert.Equal(_validOrderResource.DaysOfRent, result.RentOfDays);
         }
+        
     }
 }
