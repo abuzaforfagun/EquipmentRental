@@ -19,9 +19,9 @@ namespace EquipmentRental.Repository
             context.Orders.Add(order);
         }
 
-        public IList<Order> GetAll()
+        public IList<Order> Get(int customerId)
         {
-            return context.Orders.ToList();
+            return context.Orders.Where(o => o.Customer.Id == customerId).ToList();
         }
 
         public IList<Order> GetByCustomer(int customerId)

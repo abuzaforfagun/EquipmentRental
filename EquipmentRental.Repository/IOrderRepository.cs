@@ -5,7 +5,7 @@ namespace EquipmentRental.Repository
 {
     public interface IOrderRepository
     {
-        IList<Order> GetAll();
+        IList<Order> Get(int customerId);
         void Add(Order order);
         IList<Order> GetByCustomer(int customerId);
     }

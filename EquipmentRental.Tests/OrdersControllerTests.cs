@@ -96,11 +96,11 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Add_CallWith_ValidData_ShouldAdd_DataInStorage()
         {
-            var ordersBeforeAdd = unitOfWork.OrderRepository.GetAll().Count;
+            var ordersBeforeAdd = unitOfWork.OrderRepository.Get(1).Count;
             
             controller.Add(_validOrderResource);
 
-            var ordersAfterAdd = unitOfWork.OrderRepository.GetAll().Count;
+            var ordersAfterAdd = unitOfWork.OrderRepository.Get(1).Count;
             Assert.Equal(ordersAfterAdd, ordersBeforeAdd + 1);
         }
 

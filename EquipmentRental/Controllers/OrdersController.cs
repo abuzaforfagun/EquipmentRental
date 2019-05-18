@@ -61,9 +61,10 @@ namespace EquipmentRental.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        [Route("{customerId}")]
+        public IActionResult Get(int customerId)
         {
-            return Ok(unitOfWork.OrderRepository.GetAll());
+            return Ok(unitOfWork.OrderRepository.Get(customerId));
         }
 
 
