@@ -1,5 +1,7 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   isDisplayError: boolean;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,6 +22,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password).subscribe(result => {
       if (!result) {
         this.isDisplayError = true;
+      } else {
+        this.router.navigateByUrl('dashboard');
       }
     });
   }

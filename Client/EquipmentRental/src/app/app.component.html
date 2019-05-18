@@ -1,2 +1,2 @@
 <app-login *ngIf="!authService.isLoggedIn"></app-login>
-<router-outlet></router-outlet>
+<router-outlet *ngIf="authService.isLoggedIn"></router-outlet>

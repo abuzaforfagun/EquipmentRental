@@ -24,4 +24,8 @@ export class AuthService {
       this.isLoggedIn = true;
     }
   }
+
+  logout(): void {
+    sessionStorage.removeItem('isLoggedIn');
+  }
 }
