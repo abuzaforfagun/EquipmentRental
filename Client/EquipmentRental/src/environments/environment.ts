@@ -13,6 +13,9 @@ export const API = {
     getAll: `${rootAPI}/equipments/`,
     add: `${rootAPI}/equipments`,
     get: `${rootAPI}/equipments/`,
+  },
+  orders: {
+    add: `${rootAPI}/orders`
   }
 };
 

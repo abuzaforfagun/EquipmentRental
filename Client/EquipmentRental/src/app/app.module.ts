@@ -1,3 +1,4 @@
+import { CartService } from './services/cart.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,7 @@ import { EquipmentService } from './services/equipment.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EquipmentTableComponent } from './shared/equipment-table/equipment-table.component';
 import { EquipmentAddCartComponent } from './shared/equipment-add-cart/equipment-add-cart.component';
-
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,15 @@ import { EquipmentAddCartComponent } from './shared/equipment-add-cart/equipment
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [
     AuthService,
     HttpService,
-    EquipmentService
+    EquipmentService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

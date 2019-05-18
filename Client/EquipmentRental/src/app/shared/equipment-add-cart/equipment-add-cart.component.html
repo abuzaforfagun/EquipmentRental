@@ -5,9 +5,14 @@
       {{equipmentService.selectedEquipment.loyalityPoint}}</p>
     <div class="form-group">
       <label>Days of rent</label>
-      <input type="number" class="form-control">
+      <input type="number" [(ngModel)]="daysOfRent" class="form-control">
     </div>
     <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button>
     <button class="btn btn-primary" (click)="closeCart()">Cancle</button>
   </div>
+</div>
+
+<div class="alert alert-success" *ngIf="isItemAddedInCart" id="success-alert">
+  <strong>Success! </strong>
+  Product have added to your cart.
 </div>
