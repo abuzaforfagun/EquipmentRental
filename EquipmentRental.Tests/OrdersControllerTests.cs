@@ -14,20 +14,20 @@ using Xunit;
 
 namespace EquipmentRental.Tests
 {
-    public class OrderControllerTests
+    public class OrdersControllerTests
     {
-        private OrderController controller;
+        private OrdersController controller;
         private IUnitOfWork unitOfWork;
-        private Mock<ILogger<OrderController>> mockLogger;
+        private Mock<ILogger<OrdersController>> mockLogger;
         private IEquipmentDbContext context;
         private OrderResource _validOrderResource;
-        public OrderControllerTests()
+        public OrdersControllerTests()
         {
             context = new InMemoryDbContext();
             unitOfWork = new UnitOfWork(context);
 
-            mockLogger = new Mock<ILogger<OrderController>>();
-            controller = new OrderController(unitOfWork, mockLogger.Object);
+            mockLogger = new Mock<ILogger<OrdersController>>();
+            controller = new OrdersController(unitOfWork, mockLogger.Object);
             _validOrderResource = new OrderResource {DaysOfRent = 1, EquipmentId = 1, CustomerId = 1};
         }
 

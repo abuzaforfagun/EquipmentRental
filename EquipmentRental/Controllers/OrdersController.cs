@@ -19,12 +19,12 @@ namespace EquipmentRental.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly ILogger logger;
 
-        public OrderController(IUnitOfWork unitOfWork, ILogger<OrderController> logger)
+        public OrdersController(IUnitOfWork unitOfWork, ILogger<OrdersController> logger)
         {
             this.unitOfWork = unitOfWork;
             this.logger = logger;
