@@ -1,11 +1,11 @@
-﻿using EquipmentRental.Repository;
+﻿using AutoMapper;
+using EquipmentRental.Repository;
 using EquipmentRental.Repository.Presistance;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace EquipmentRental
 {
@@ -23,7 +23,7 @@ namespace EquipmentRental
         {
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddAutoMapper();
             //TODO: Use Scopped when used real presistance
             services.AddSingleton<IEquipmentDbContext, EquipmentDbContext>();
             services.AddSingleton<IEquipementRepository, EquipmentRepository>();
