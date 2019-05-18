@@ -24,7 +24,7 @@ namespace EquipmentRental.Repository.Presistance
             Orders = new List<Order>();
             Customers = new List<Customer>
             {
-                new Customer{ Id = 1, Email = "jhon@email.com", Password = "test#21" }
+                new Customer{ Id = 1, Name = "Jhon", Email = "jhon@email.com", Password = "test#21" }
             };
         }
     }

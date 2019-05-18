@@ -12,7 +12,7 @@ export class CheckoutService {
 
   constructor(private httpService: HttpService) { }
 
-  getAllOrders(customerId: number): Observable<Order[]> {
+  getAllOrders(customerId: string): Observable<Order[]> {
     return this.httpService.get(`${API.orders.get}/${customerId}`, {});
   }
 }

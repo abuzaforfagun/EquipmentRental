@@ -21,6 +21,7 @@ export class AuthService {
       this.httpService.post(API.auth.login, credentials)
         .subscribe(data => {
           sessionStorage.setItem('userId', data.id.toString());
+          sessionStorage.setItem('userName', data.name.toString());
           this.isLoggedIn = true;
           resolve(true);
         }, err => resolve(false));
@@ -34,5 +35,6 @@ export class AuthService {
 
   logout(): void {
     sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('userName');
   }
 }
