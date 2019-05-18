@@ -20,18 +20,19 @@ namespace EquipmentRental.Controllers
             this.mapper = mapper;
             this.logger = logger;
         }
+
         [HttpPost]
         [Route("login")]
-        public IActionResult Login(string email, string password)
+        public IActionResult Login([FromBody] LoginResource credentials)
         {
-            var customer = unitOfWork.CustomerRepository.Get(email.ToLower(), password);
+            var customer = unitOfWork.CustomerRepository.Get(credentials.Email.ToLower(), credentials.Password);
 
             if (customer != null)
             {
                 var result = mapper.Map<CustomerResource>(customer);
                 return Ok(result);
             }
-            logger.LogError($"Invalid login attempt by {email}, used '{password}' as password.");
+            logger.LogError($"Invalid login attempt by {credentials.Email}, used '{credentials.Password}' as password.");
             return Unauthorized();
         }
     }

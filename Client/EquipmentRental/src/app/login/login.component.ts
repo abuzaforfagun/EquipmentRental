@@ -1,7 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   tryLogin() {
-    this.authService.login(this.email, this.password).subscribe(result => {
+    this.authService.login(this.email, this.password).then(result => {
       if (!result) {
         this.isDisplayError = true;
       } else {

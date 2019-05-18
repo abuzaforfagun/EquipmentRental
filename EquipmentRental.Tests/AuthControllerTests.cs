@@ -38,7 +38,8 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_ValidCredential_ShouldReturn_OkResponse()
         {
-            var result = controller.Login("jhon@email.com", "123");
+            var credential = new LoginResource {Email = "jhon@email.com", Password = "123"};
+            var result = controller.Login(credential);
 
             Assert.True(result is OkObjectResult);
         }
@@ -46,7 +47,8 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_InvalidCredential_ShouldReturn_UnauthorizedResponse()
         {
-            var result = controller.Login("oka@email.com", "123");
+            var credential = new LoginResource {Email = "jn@email.com", Password = "123"};
+            var result = controller.Login(credential);
 
             Assert.True(result is UnauthorizedResult);
         }
@@ -54,7 +56,8 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_InvalidCredential_Should_LogActivity()
         {
-            var result = controller.Login("oka@email.com", "123");
+            var credential = new LoginResource {Email = "oka@email.com", Password = "123"};
+            var result = controller.Login(credential);
 
             mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
         }
@@ -62,7 +65,8 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_ValidCredential_ShouldReturn_UserDetails()
         {
-            var result = (controller.Login("jhon@email.com", "123") as OkObjectResult).Value as CustomerResource;
+            var credential = new LoginResource {Email = "jhon@email.com", Password = "123"};
+            var result = (controller.Login(credential) as OkObjectResult).Value as CustomerResource;
 
             Assert.Equal(1, result.Id);
         }

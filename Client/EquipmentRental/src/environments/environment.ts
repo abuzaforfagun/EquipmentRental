@@ -9,6 +9,9 @@ export const environment = {
 const rootAPI = 'https://localhost:44300/api';
 
 export const API = {
+  auth: {
+    login: `${rootAPI}/auth/login`
+  },
   equipments: {
     getAll: `${rootAPI}/equipments/`,
     add: `${rootAPI}/equipments`,
