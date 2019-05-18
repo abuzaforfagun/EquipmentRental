@@ -15,4 +15,8 @@ export class CheckoutService {
   getAllOrders(customerId: string): Observable<Order[]> {
     return this.httpService.get(`${API.orders.get}/${customerId}`, {});
   }
+
+  getInvoice(customerId: string): Observable<any> {
+    return this.httpService.download(`${API.orders.invoice}/${customerId}/invoice`);
+  }
 }

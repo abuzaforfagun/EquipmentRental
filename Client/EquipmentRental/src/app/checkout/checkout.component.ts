@@ -1,6 +1,7 @@
 import { CheckoutService } from './../services/checkout.service';
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../models/order';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-checkout',
@@ -24,4 +25,9 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  getInvoice() {
+    this.checkoutService.getInvoice(sessionStorage.getItem('userId')).subscribe(data => {
+      saveAs(data, 'Invoice.txt');
+    });
+  }
 }

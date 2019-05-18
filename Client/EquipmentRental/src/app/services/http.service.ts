@@ -14,6 +14,10 @@ export class HttpService {
     return this.httpClient.get(url, params);
   }
 
+  download(url: string): Observable<any> {
+    return this.httpClient.get(url, { responseType: 'blob' });
+  }
+
   post(url: string, data: any): Observable<any> {
     return this.httpClient.post(url, data);
   }

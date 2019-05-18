@@ -19,7 +19,8 @@ export const API = {
   },
   orders: {
     add: `${rootAPI}/orders`,
-    get: `${rootAPI}/orders`
+    get: `${rootAPI}/orders`,
+    invoice: `${rootAPI}/orders`
   }
 };
 
