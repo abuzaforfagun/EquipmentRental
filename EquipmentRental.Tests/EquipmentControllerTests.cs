@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using EquipmentRental.Controllers;
 using EquipmentRental.Domain.Models;
+using EquipmentRental.Domain.Resources;
+using EquipmentRental.Profile;
 using EquipmentRental.Repository;
 using EquipmentRental.Tests.Presistance;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +28,13 @@ namespace EquipmentRental.Tests
             dbContext = new InMemoryDbContext();
             unitOfWork = new UnitOfWork(dbContext);
             mockLogger = new Mock<ILogger<EquipmentsController>>();
-            
-            controller = new EquipmentsController(unitOfWork, mockLogger.Object);
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            var mapper = mockMapper.CreateMapper();
+
+            controller = new EquipmentsController(unitOfWork, mockLogger.Object, mapper);
         }
 
         [Fact]
@@ -40,7 +48,7 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_NoParametere_ShouldReturn_AllEquipements()
         {
-            var result = (controller.Get() as OkObjectResult).Value as IList<Equipment>;
+            var result = (controller.Get() as OkObjectResult).Value as IList<EquipmentResource>;
 
             Assert.True(result.Count > 0);
         }
@@ -50,7 +58,7 @@ namespace EquipmentRental.Tests
         {
             dbContext.Equipments = new List<Equipment>();
 
-            var result = (controller.Get() as OkObjectResult).Value as IList<Equipment>;
+            var result = (controller.Get() as OkObjectResult).Value as IList<EquipmentResource>;
 
             Assert.Equal(0, result.Count);
         }
