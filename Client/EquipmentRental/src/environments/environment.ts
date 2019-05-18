@@ -6,6 +6,16 @@ export const environment = {
   production: false
 };
 
+const rootAPI = 'https://localhost:44300/api';
+
+export const API = {
+  equipments: {
+    getAll: `${rootAPI}/equipments/`,
+    add: `${rootAPI}/equipments`,
+    get: `${rootAPI}/equipments/`,
+  }
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { HttpService } from './services/http.service';
+import { EquipmentService } from './services/equipment.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,9 +23,14 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    HttpService,
+    EquipmentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

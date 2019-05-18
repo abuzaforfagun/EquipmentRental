@@ -1,4 +1,3 @@
-<app-nav-bar></app-nav-bar>
 <div class="row">
   <div class="col-md-12">
     <div class="col-md-5">
@@ -8,9 +7,9 @@
           <th>Type</th>
           <th>Action</th>
         </tr>
-        <tr>
-          <td>Abc</td>
-          <td>Def</td>
+        <tr *ngFor="let equipment of equipments">
+          <td>{{equipment.title}}</td>
+          <td>{{equipment.equipmentType.name}}</td>
           <td><button class="btn btn-primary">Order Now</button></td>
         </tr>
       </table>
