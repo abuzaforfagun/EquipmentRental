@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EquipmentTableComponent } from './shared/equipment-table/equipment-table.component';
 import { EquipmentAddCartComponent } from './shared/equipment-add-cart/equipment-add-cart.component';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform
     DashboardComponent,
     NavBarComponent,
     EquipmentTableComponent,
-    EquipmentAddCartComponent
+    EquipmentAddCartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

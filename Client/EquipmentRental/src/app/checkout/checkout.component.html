@@ -1,0 +1,25 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Hi Customer</h5>
+    <p class="card-text">Numbers of orders: {{totalOrders}}<br />
+      Loyality point you earned: {{totalLoyalityPoint}}</p>
+  </div>
+</div>
+
+<h2>Your orders</h2>
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Type</th>
+    <th>Loyality Point</th>
+    <th>Days of Rent</th>
+    <th>Price</th>
+  </tr>
+  <tr *ngFor="let order of orders">
+    <td>{{order.title}}</td>
+    <td>{{order.type}}</td>
+    <td>{{order.loyalityPoint}}</td>
+    <td>{{order.rentOfDays}}</td>
+    <td>{{order.price}}</td>
+  </tr>
+</table>

@@ -1,6 +1,6 @@
 ﻿namespace EquipmentRental.Domain.Resources
 {
-    public class OrderResource
+    public class OrderInputResource
     {
         public int EquipmentId { get; set; }
         public int DaysOfRent { get; set; }

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using EquipmentRental.Domain.Models;
 using EquipmentRental.Domain.Resources;
 using EquipmentRental.Repository;
@@ -23,39 +24,41 @@ namespace EquipmentRental.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly ILogger logger;
+        private readonly IMapper mapper;
 
-        public OrdersController(IUnitOfWork unitOfWork, ILogger<OrdersController> logger)
+        public OrdersController(IUnitOfWork unitOfWork, ILogger<OrdersController> logger, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.logger = logger;
+            this.mapper = mapper;
         }
 
         [HttpPost]
-        public IActionResult Add(OrderResource order)
+        public IActionResult Add(OrderInputResource orderInput)
         {
-            if (order == null || order.CustomerId == 0 || order.EquipmentId == 0 || order.DaysOfRent == 0)
+            if (orderInput == null || orderInput.CustomerId == 0 || orderInput.EquipmentId == 0 || orderInput.DaysOfRent == 0)
             {
-                logger.LogError($"[post] api/order called with bad data. Data: {JsonConvert.SerializeObject(order)}");
+                logger.LogError($"[post] api/orderInput called with bad data. Data: {JsonConvert.SerializeObject(orderInput)}");
                 return BadRequest();
             }
 
-            var equipment = unitOfWork.EquipementRepository.Get(order.EquipmentId);
+            var equipment = unitOfWork.EquipementRepository.Get(orderInput.EquipmentId);
 
             if (equipment == null)
             {
-                logger.LogError($"[post] api/order called with invalid equipment id({order.EquipmentId})");
+                logger.LogError($"[post] api/orderInput called with invalid equipment id({orderInput.EquipmentId})");
                 return BadRequest();
             }
 
-            var customer = unitOfWork.CustomerRepository.Get(order.CustomerId);
+            var customer = unitOfWork.CustomerRepository.Get(orderInput.CustomerId);
 
             if (customer == null)
             {
-                logger.LogError($"[post] api/order called with invalid customer id({order.CustomerId})");
+                logger.LogError($"[post] api/orderInput called with invalid customer id({orderInput.CustomerId})");
                 return BadRequest();
             }
 
-            var _order = new Order(equipment, customer, order.DaysOfRent);
+            var _order = new Order(equipment, customer, orderInput.DaysOfRent);
             unitOfWork.OrderRepository.Add(_order);
             return Ok(_order);
         }
@@ -64,7 +67,9 @@ namespace EquipmentRental.Controllers
         [Route("{customerId}")]
         public IActionResult Get(int customerId)
         {
-            return Ok(unitOfWork.OrderRepository.Get(customerId));
+            var orders = unitOfWork.OrderRepository.Get(customerId).ToList();
+            var result = mapper.Map<List<OrderResultResource>>(orders);
+            return Ok(result);
         }
 
 
