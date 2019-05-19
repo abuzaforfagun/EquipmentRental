@@ -55,3 +55,9 @@ npm i
 ```
 ng serve -o
 ```
+
+## Demo user credentials
+
+Email: jhon@email.com
+
+Password: test#21
