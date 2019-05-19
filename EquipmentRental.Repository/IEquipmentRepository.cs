@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EquipmentRental.Repository
 {
-    public interface IEquipementRepository
+    public interface IEquipmentRepository
     {
         IList<Equipment> GetAll();
         Equipment Get(int id);

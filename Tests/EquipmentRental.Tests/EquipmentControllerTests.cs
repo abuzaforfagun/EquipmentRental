@@ -7,7 +7,7 @@ using EquipmentRental.Domain.Models;
 using EquipmentRental.Domain.Resources;
 using EquipmentRental.Profile;
 using EquipmentRental.Repository;
-using EquipmentRental.Tests.Presistance;
+using EquipmentRental.Tests.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;
@@ -18,56 +18,56 @@ namespace EquipmentRental.Tests
 {
     public class EquipmentControllerTests
     {
-        private EquipmentsController controller;
-        private InMemoryDbContext dbContext;
-        private UnitOfWork unitOfWork;
-        private Mock<ILogger<EquipmentsController>> mockLogger;
+        private readonly EquipmentsController _controller;
+        private readonly InMemoryDbContext _dbContext;
+        private readonly Mock<ILogger<EquipmentsController>> _mockLogger;
 
         public EquipmentControllerTests()
         {
-            dbContext = new InMemoryDbContext();
-            unitOfWork = new UnitOfWork(dbContext);
-            mockLogger = new Mock<ILogger<EquipmentsController>>();
+            _dbContext = new InMemoryDbContext();
+            var unitOfWork = new UnitOfWork(_dbContext);
+            _mockLogger = new Mock<ILogger<EquipmentsController>>();
             var mockMapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MappingProfile());
             });
             var mapper = mockMapper.CreateMapper();
 
-            controller = new EquipmentsController(unitOfWork, mockLogger.Object, mapper);
+            _controller = new EquipmentsController(unitOfWork, _mockLogger.Object, mapper);
         }
 
         [Fact]
-        public void Get_CallWith_NoParametere_ShouldReturn_OkResponse()
+        public void Get_CallWith_NoParameter_ShouldReturn_OkResponse()
         {
-            var result = controller.Get();
+            var result = _controller.Get();
 
             Assert.True(result is OkObjectResult);
         }
 
         [Fact]
-        public void Get_CallWith_NoParametere_ShouldReturn_AllEquipements()
+        public void Get_CallWith_NoParameter_ShouldReturn_AllEquipments()
         {
-            var result = (controller.Get() as OkObjectResult).Value as IList<EquipmentResource>;
+            var result = (_controller.Get() as OkObjectResult)?.Value as IList<EquipmentResource>;
 
-            Assert.True(result.Count > 0);
+            Assert.True(result != null && result.Count > 0);
         }
 
         [Fact]
-        public void Get_CallWith_NoParameters_ShoulReturn_EmptyList_When_NoEquipementAvailable()
+        public void Get_CallWith_NoParameters_ShouldReturn_EmptyList_When_NoEquipmentAvailable()
         {
-            dbContext.Equipments = new List<Equipment>();
+            _dbContext.Equipments = new List<Equipment>();
 
-            var result = (controller.Get() as OkObjectResult).Value as IList<EquipmentResource>;
+            var result = (_controller.Get() as OkObjectResult)?.Value as IList<EquipmentResource>;
 
-            Assert.Equal(0, result.Count);
+            if (result != null) Assert.Equal(0, result.Count);
         }
         
+
         [Fact]
         public void Get_CallWith_ValidEquipmentId_ShouldReturn_OkResponse()
         {
-            var existingEquipment = dbContext.Equipments.First();
-            var result = controller.Get(existingEquipment.Id);
+            var existingEquipment = _dbContext.Equipments.First();
+            var result = _controller.Get(existingEquipment.Id);
 
             Assert.True(result is OkObjectResult);
         }
@@ -75,7 +75,7 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_InValidEquipmentId_ShouldReturn_NotFound()
         {
-            var result = controller.Get(It.IsAny<int>());
+            var result = _controller.Get(It.IsAny<int>());
 
             Assert.True(result is NotFoundResult);
         }
@@ -83,17 +83,17 @@ namespace EquipmentRental.Tests
         [Fact]
         public void Get_CallWith_InValidEquipmentId_Should_AddLog()
         {
-            var result = controller.Get(It.IsAny<int>());
+            var result = _controller.Get(It.IsAny<int>());
 
-            mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
+            _mockLogger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<FormattedLogValues>(), It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()), Times.Once);
         }
 
         [Fact] 
 
         public void Get_CallWith_ValidEquipmentId_ShouldReturn_SpecificEquipement()
         {
-            var existingEquipment = dbContext.Equipments.First();
-            var result = (controller.Get(existingEquipment.Id) as OkObjectResult).Value as Equipment;
+            var existingEquipment = _dbContext.Equipments.First();
+            var result = (_controller.Get(existingEquipment.Id) as OkObjectResult)?.Value as Equipment;
 
             Assert.Equal(existingEquipment, result);
         }

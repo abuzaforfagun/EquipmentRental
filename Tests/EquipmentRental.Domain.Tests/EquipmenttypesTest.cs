@@ -1,22 +1,11 @@
-using EquipmentRental.Domain.EquipementTypes;
+using EquipmentRental.Domain.EquipmentTypes;
 using System.Collections.Generic;
 using Xunit;
 
 namespace EquipmentRental.Domain.Tests
 {
-    public class EquipmenttypesTest
+    public class EquipmentTypesTest
     {
-        private double oneTimeRentalFee;
-        private double regularDailyFee;
-        private double premiumDailyFee;
-
-        public EquipmenttypesTest()
-        {
-            oneTimeRentalFee = Constants.RentalFee.OneTimeRentalFee;
-            regularDailyFee = Constants.RentalFee.RegularDailyFee;
-            premiumDailyFee = Constants.RentalFee.PremiumDailyFee;
-        }
-
         [Theory]
         [MemberData(nameof(RegularEquipmentTestData))]
         public void RegularEquipment_GetPrice_ShouldReturn_CorrectValue(int daysOfRent, double expectedPrice)
@@ -28,10 +17,10 @@ namespace EquipmentRental.Domain.Tests
         }
 
         [Theory]
-        [MemberData(nameof(SpecilizedEquipmentTestData))]
-        public void SpecilizedEquipment_GetPrice_ShouldReturn_CorrectValue(int daysOfRent, double expectedPrice)
+        [MemberData(nameof(SpecializedEquipmentTestData))]
+        public void SpecializedEquipment_GetPrice_ShouldReturn_CorrectValue(int daysOfRent, double expectedPrice)
         {
-            var equipmentTypes = new SpecializedEquipement();
+            var equipmentTypes = new SpecializedEquipment();
             var price = equipmentTypes.GetPrice(daysOfRent);
 
             Assert.Equal(expectedPrice, price);
@@ -41,7 +30,7 @@ namespace EquipmentRental.Domain.Tests
         [MemberData(nameof(HeavyEquipmentTestData))]
         public void HeavyEquipment_GetPrice_ShouldReturn_CorrectValue(int daysOfRent, double expectedPrice)
         {
-            var equipmentTypes = new HeavyEquipement();
+            var equipmentTypes = new HeavyEquipment();
             var price = equipmentTypes.GetPrice(daysOfRent);
 
             Assert.Equal(expectedPrice, price);
@@ -55,7 +44,7 @@ namespace EquipmentRental.Domain.Tests
                 new object[] { 3, 260 }
             };
 
-        public static IEnumerable<object[]> SpecilizedEquipmentTestData =>
+        public static IEnumerable<object[]> SpecializedEquipmentTestData =>
             new List<object[]>
             {
                 new object[] { 2, 120 },

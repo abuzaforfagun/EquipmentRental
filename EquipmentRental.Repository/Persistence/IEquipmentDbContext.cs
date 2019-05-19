@@ -1,7 +1,7 @@
 ﻿using EquipmentRental.Domain.Models;
 using System.Collections.Generic;
 
-namespace EquipmentRental.Repository.Presistance
+namespace EquipmentRental.Repository.Persistence
 {
     public interface IEquipmentDbContext
     {

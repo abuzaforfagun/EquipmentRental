@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using EquipmentRental.Domain.EquipementTypes;
+using EquipmentRental.Domain.EquipmentTypes;
 using EquipmentRental.Domain.Models;
-using EquipmentRental.Repository.Presistance;
+using EquipmentRental.Repository.Persistence;
 
-namespace EquipmentRental.Tests.Presistance
+namespace EquipmentRental.Tests.Persistence
 {
     public class InMemoryDbContext : EquipmentDbContext
     {
@@ -15,7 +15,7 @@ namespace EquipmentRental.Tests.Presistance
                 {
                     Id = 1,
                     Title = "Caterpillar bulldozer",
-                    EquipmentType = new HeavyEquipement()
+                    EquipmentType = new HeavyEquipment()
                 },
                 new Equipment()
                 {

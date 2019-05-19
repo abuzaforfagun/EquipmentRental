@@ -12,23 +12,23 @@ namespace EquipmentRental.Controllers
     [ApiController]
     public class EquipmentsController : ControllerBase
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly ILogger<EquipmentsController> logger;
-        private readonly IMapper mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<EquipmentsController> _logger;
+        private readonly IMapper _mapper;
 
         public EquipmentsController(IUnitOfWork unitOfWork, ILogger<EquipmentsController> logger, IMapper mapper)
         {
-            this.unitOfWork = unitOfWork;
-            this.logger = logger;
-            this.mapper = mapper;
+            this._unitOfWork = unitOfWork;
+            this._logger = logger;
+            this._mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var equipments = unitOfWork.EquipementRepository.GetAll().ToList();
+            var equipments = _unitOfWork.EquipmentRepository.GetAll().ToList();
 
-            var result = mapper.Map<List<EquipmentResource>>(equipments);
+            var result = _mapper.Map<List<EquipmentResource>>(equipments);
 
             return Ok(result);
         }
@@ -37,10 +37,10 @@ namespace EquipmentRental.Controllers
         [Route("{id}")]
         public IActionResult Get(int id)
         {
-            var result = unitOfWork.EquipementRepository.Get(id);
+            var result = _unitOfWork.EquipmentRepository.Get(id);
             if (result == null)
             {
-                logger.LogError($"api/controller/get/{id} Not found");
+                _logger.LogError($"api/controller/get/{id} Not found");
                 return NotFound();
             }
             return Ok(result);

@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        IEquipementRepository EquipementRepository { get; set; }
+        IEquipmentRepository EquipmentRepository { get; set; }
         IOrderRepository OrderRepository { get; set; }
 
         ICustomerRepository CustomerRepository { get; set; }

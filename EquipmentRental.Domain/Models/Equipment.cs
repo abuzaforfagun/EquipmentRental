@@ -10,9 +10,9 @@ namespace EquipmentRental.Domain.Models
 
         public Equipment(int id, string title, IEquipmentType type)
         {
-            this.Id = id;
-            this.Title = title;
-            this.EquipmentType = type;
+            Id = id;
+            Title = title;
+            EquipmentType = type;
         }
 
         public Equipment()

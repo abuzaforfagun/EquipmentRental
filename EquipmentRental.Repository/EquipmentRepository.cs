@@ -1,28 +1,28 @@
 ﻿using EquipmentRental.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
-using EquipmentRental.Repository.Presistance;
+using EquipmentRental.Repository.Persistence;
 
 namespace EquipmentRental.Repository
 {
-    public class EquipmentRepository : IEquipementRepository
+    public class EquipmentRepository : IEquipmentRepository
     {
-        private readonly IEquipmentDbContext context;
+        private readonly IEquipmentDbContext _context;
 
 
         public EquipmentRepository(IEquipmentDbContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public IList<Equipment> GetAll()
         {
-            return context.Equipments;
+            return _context.Equipments;
         }
 
         public Equipment Get(int id)
         {
-            return context.Equipments.SingleOrDefault(i => i.Id == id);
+            return _context.Equipments.SingleOrDefault(i => i.Id == id);
         }
     }
 }

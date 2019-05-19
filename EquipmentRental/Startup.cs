@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EquipmentRental.Repository;
-using EquipmentRental.Repository.Presistance;
+using EquipmentRental.Repository.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +24,9 @@ namespace EquipmentRental
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddAutoMapper();
-            //TODO: Use Scopped when used real presistance
+            //TODO: Use Scoped when used real persistence
             services.AddSingleton<IEquipmentDbContext, EquipmentDbContext>();
-            services.AddSingleton<IEquipementRepository, EquipmentRepository>();
+            services.AddSingleton<IEquipmentRepository, EquipmentRepository>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
         }
 

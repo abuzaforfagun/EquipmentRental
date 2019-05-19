@@ -10,29 +10,29 @@ namespace EquipmentRental.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IMapper mapper;
-        private readonly ILogger<AuthController> logger;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly ILogger<AuthController> _logger;
 
         public AuthController(IUnitOfWork unitOfWork, ILogger<AuthController> logger, IMapper mapper)
         {
-            this.unitOfWork = unitOfWork;
-            this.mapper = mapper;
-            this.logger = logger;
+            this._unitOfWork = unitOfWork;
+            this._mapper = mapper;
+            this._logger = logger;
         }
 
         [HttpPost]
         [Route("login")]
         public IActionResult Login([FromBody] LoginResource credentials)
         {
-            var customer = unitOfWork.CustomerRepository.Get(credentials.Email.ToLower(), credentials.Password);
+            var customer = _unitOfWork.CustomerRepository.Get(credentials.Email.ToLower(), credentials.Password);
 
             if (customer != null)
             {
-                var result = mapper.Map<CustomerResource>(customer);
+                var result = _mapper.Map<CustomerResource>(customer);
                 return Ok(result);
             }
-            logger.LogError($"Invalid login attempt by {credentials.Email}, used '{credentials.Password}' as password.");
+            _logger.LogError($"Invalid login attempt by {credentials.Email}, used '{credentials.Password}' as password.");
             return Unauthorized();
         }
     }

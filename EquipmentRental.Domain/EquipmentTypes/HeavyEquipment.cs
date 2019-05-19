@@ -1,13 +1,8 @@
-﻿using EquipmentRental.Domain.EquipmentTypes;
-
-namespace EquipmentRental.Domain.EquipementTypes
+﻿namespace EquipmentRental.Domain.EquipmentTypes
 {
-    public class HeavyEquipement : IEquipmentType
+    public class HeavyEquipment : IEquipmentType
     {
-        public int LoyalityPoint
-        {
-            get { return 2; }
-        }
+        public int LoyaltyPoint => 2;
 
         public string Name => "Heavy";
 
