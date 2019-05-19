@@ -1,5 +1,4 @@
 import { HttpService } from './http.service';
-import { HttpClient } from 'selenium-webdriver/http';
 import { Injectable } from '@angular/core';
 import { Order } from '../models/order';
 import { API } from 'src/environments/environment';

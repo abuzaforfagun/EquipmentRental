@@ -19,7 +19,7 @@ export class EquipmentTableComponent implements OnInit {
     });
   }
 
-  openAddtoCartBox(equipment: Equipment): void {
+  openAddToCartBox(equipment: Equipment): void {
     this.equipmentService.selectedEquipment = equipment;
     this.equipmentService.isAnyEquipmentSelected = true;
   }

@@ -23,7 +23,7 @@ export class EquipmentAddCartComponent implements OnInit {
         this.daysOfRent = 0;
         setTimeout(() => {
           this.isItemAddedInCart = false;
-        }, 4000);
+        }, 3000);
       }
     });
   }

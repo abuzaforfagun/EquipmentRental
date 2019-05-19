@@ -13,7 +13,7 @@ export class CheckoutComponent implements OnInit {
   customerName: string;
   orders: Order[];
   totalOrders: number;
-  totalLoyalityPoint: number;
+  totalLoyaltyPoint: number;
   totalPrice: number;
   constructor(public checkoutService: CheckoutService) { }
 
@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
       if (data) {
         this.orders = data;
         this.totalOrders = data.length;
-        this.totalLoyalityPoint = data.reduce((a, b) => a + (b.loyalityPoint || 0), 0);
+        this.totalLoyaltyPoint = data.reduce((a, b) => a + (b.loyaltyPoint || 0), 0);
         this.totalPrice = data.reduce((a, b) => a + (b.price || 0), 0);
       }
     });

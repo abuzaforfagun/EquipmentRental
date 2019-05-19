@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5 class="card-title">Hi {{customerName}}</h5>
     <p class="card-text">Numbers of orders: {{totalOrders}}<br />
-      Loyality point you earned: {{totalLoyalityPoint}}<br />
+      Loyalty point you earned: {{totalLoyaltyPoint}}<br />
       Total price: {{totalPrice}}</p>
     <button class="btn btn-primary" *ngIf="orders && orders.length > 0" (click)="getInvoice()">Get Invoice</button>
   </div>
@@ -13,14 +13,14 @@
   <tr>
     <th>Title</th>
     <th>Type</th>
-    <th>Loyality Point</th>
+    <th>Loyalty Point</th>
     <th>Days of Rent</th>
     <th>Price</th>
   </tr>
   <tr *ngFor="let order of orders">
     <td>{{order.title}}</td>
     <td>{{order.type}}</td>
-    <td>{{order.loyalityPoint}}</td>
+    <td>{{order.loyaltyPoint}}</td>
     <td>{{order.rentOfDays}}</td>
     <td>{{order.price}}</td>
   </tr>

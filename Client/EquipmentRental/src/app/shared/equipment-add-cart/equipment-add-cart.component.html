@@ -1,18 +1,18 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">{{equipmentService.selectedEquipment.title}}</h5>
-    <p class="card-text">Type: {{equipmentService.selectedEquipment.type}}<br />Loyality Point:
-      {{equipmentService.selectedEquipment.loyalityPoint}}</p>
+    <p class="card-text">Type: {{equipmentService.selectedEquipment.type}}<br />Loyalty Point:
+      {{equipmentService.selectedEquipment.loyaltyPoint}}</p>
     <div class="form-group">
       <label>Days of rent</label>
       <input type="number" [(ngModel)]="daysOfRent" class="form-control">
     </div>
     <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button>
-    <button class="btn btn-primary" (click)="closeCart()">Cancle</button>
+    <button class="btn btn-primary" (click)="closeCart()">Cancel</button>
   </div>
 </div>
 
 <div class="alert alert-success" *ngIf="isItemAddedInCart" id="success-alert">
   <strong>Success! </strong>
-  Product have added to your cart.
+  Item has added to your cart.
 </div>
