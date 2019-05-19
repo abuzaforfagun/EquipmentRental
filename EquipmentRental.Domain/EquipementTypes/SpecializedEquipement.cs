@@ -15,7 +15,7 @@ namespace EquipmentRental.Domain.EquipementTypes
         {
             var preimumFee = daysOfRent > NumberOfDaysForPrimumFee ? RentalFee.PremiumDailyFee * NumberOfDaysForPrimumFee : RentalFee.PremiumDailyFee * daysOfRent;
             var regularFee = daysOfRent > NumberOfDaysForPrimumFee ? RentalFee.RegularDailyFee * (daysOfRent - NumberOfDaysForPrimumFee) : 0;
-            return RentalFee.OneTimeRentalFee + preimumFee + regularFee;
+            return preimumFee + regularFee;
         }
     }
 }

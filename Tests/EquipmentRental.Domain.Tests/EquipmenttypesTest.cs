@@ -58,9 +58,9 @@ namespace EquipmentRental.Domain.Tests
         public static IEnumerable<object[]> SpecilizedEquipmentTestData =>
             new List<object[]>
             {
-                new object[] { 2, 220 },
-                new object[] { 3, 280 },
-                new object[] { 4, 320 }
+                new object[] { 2, 120 },
+                new object[] { 3, 180 },
+                new object[] { 4, 220 }
             };
 
         public static IEnumerable<object[]> HeavyEquipmentTestData =>
