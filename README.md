@@ -28,7 +28,7 @@
 Make sure you have installed .NET Core SDK 2.1 and Node.
 #### Backend
 You can run the backend service in two ways.
-1. Open EquipmentRental.sln in visual studio. Clean and rebuild the solution and run the application from the Debug menu.
+1. Open **EquipmentRental.sln** in visual studio. Clean and rebuild the solution and run the application from the Debug menu.
 2. Open a command line on the solution folder. And use the following commands.
 
 ```
