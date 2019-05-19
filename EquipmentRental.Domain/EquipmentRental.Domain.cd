@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EquipmentRental.Domain.Constants.RentalFee">
+    <Position X="5.25" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Constants\RentalFee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.EquipementTypes.HeavyEquipement" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>EquipementTypes\HeavyEquipement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="EquipmentRental.Domain.EquipementTypes.RegularEquipment" BaseTypeListCollapsed="true">
+    <Position X="9" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAIAAIAAA=</HashCode>
+      <FileName>EquipementTypes\RegularEquipment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="EquipmentRental.Domain.EquipementTypes.SpecializedEquipement" BaseTypeListCollapsed="true">
+    <Position X="9" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAIAAIAAA=</HashCode>
+      <FileName>EquipementTypes\SpecializedEquipement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="EquipmentRental.Domain.Models.Customer">
+    <Position X="11.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.Models.Equipment">
+    <Position X="13.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACABAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Equipment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.Models.Order">
+    <Position X="5.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAQAAAAAAEAAAAAQAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.Resources.CustomerResource">
+    <Position X="7.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\CustomerResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.Resources.EquipmentResource">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAQAAAAAIAAA=</HashCode>
+      <FileName>Resources\EquipmentResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.Resources.LoginResource">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\LoginResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.Resources.OrderInputResource">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAEAAAAA=</HashCode>
+      <FileName>Resources\OrderInputResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EquipmentRental.Domain.Resources.OrderResultResource">
+    <Position X="3.25" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Resources\OrderResultResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="EquipmentRental.Domain.EquipmentTypes.IEquipmentType">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>EquipementTypes\IEquipmentType.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
