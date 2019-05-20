@@ -19,6 +19,7 @@
 ### Good to have features
 * Use CQRS in the backend.
 * Implement micro-service strategies.
+* Add versioning suuport.
 * Use state management in frontend.
 * Add docker support.
 * Integrate with CI/CD tools.
