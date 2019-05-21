@@ -1,4 +1,5 @@
-﻿using EquipmentRental.Domain.Models;
+﻿using System.Threading.Tasks;
+using EquipmentRental.Domain.Models;
 
 namespace EquipmentRental.Repository
 {
@@ -6,5 +7,7 @@ namespace EquipmentRental.Repository
     {
         Customer Get(int id);
         Customer Get(string email, string password);
+        Task<Customer> GetAsync(int id);
+        Task<Customer> GetAsync(string email, string password);
     }
 }

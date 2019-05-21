@@ -1,5 +1,6 @@
 ﻿using EquipmentRental.Domain.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EquipmentRental.Repository
 {
@@ -7,5 +8,8 @@ namespace EquipmentRental.Repository
     {
         IList<Equipment> GetAll();
         Equipment Get(int id);
+        Task<IList<Equipment>> GetAllAsync();
+        Task<Equipment> GetAsync(int id);
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using EquipmentRental.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EquipmentRental.Repository.Persistence;
 
 namespace EquipmentRental.Repository
@@ -23,6 +24,18 @@ namespace EquipmentRental.Repository
         public Equipment Get(int id)
         {
             return _context.Equipments.SingleOrDefault(i => i.Id == id);
+        }
+
+        public async Task<IList<Equipment>> GetAllAsync()
+        {
+            var task = Task.Run(() => _context.Equipments);
+            return await task;
+        }
+
+        public async Task<Equipment> GetAsync(int id)
+        {
+            var task = Task.Run(() => _context.Equipments.SingleOrDefault(i => i.Id == id));
+            return await task;
         }
     }
 }
