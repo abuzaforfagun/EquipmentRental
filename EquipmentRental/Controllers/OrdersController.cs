@@ -30,7 +30,7 @@ namespace EquipmentRental.Controllers
         [HttpPost]
         public IActionResult Add(OrderInputResource orderInput)
         {
-            if (orderInput == null || orderInput.CustomerId == 0 || orderInput.EquipmentId == 0 || orderInput.DaysOfRent == 0)
+            if (orderInput == null || orderInput.CustomerId == 0 || orderInput.EquipmentId == 0 || orderInput.DaysOfRent <= 0)
             {
                 _logger.LogError($"[post] api/orderInput called with bad data. Data: {JsonConvert.SerializeObject(orderInput)}");
                 return BadRequest();
