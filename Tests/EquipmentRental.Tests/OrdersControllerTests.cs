@@ -65,6 +65,22 @@ namespace EquipmentRental.Tests
         }
 
         [Fact]
+        public void Add_CallWith_NegativeDaysOfRent_ShouldReturn_BadRequest()
+        {
+            var requestObject = new OrderInputResource()
+            {
+                CustomerId = 1,
+                DaysOfRent = -1,
+                EquipmentId = 1
+            };
+
+            var result = _controller.Add(requestObject);
+
+            Assert.True(result is BadRequestResult);
+
+        }
+
+        [Fact]
         public void Add_CallWithOut_CustomerId_ShouldReturn_BadRequest()
         {
             var result = _controller.Add(new OrderInputResource() { DaysOfRent = 1, EquipmentId = 1 });

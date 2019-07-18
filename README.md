@@ -19,13 +19,14 @@
 ### Good to have features
 * Use CQRS in the backend.
 * Implement micro-service strategies.
+* Add versioning suuport.
 * Use state management in frontend.
 * Add docker support.
 * Integrate with CI/CD tools.
 
 ## Setup environment
 **Prerequisite**
-Make sure you have installed .NET Core SDK 2.1 and Node.
+Make sure you have installed .NET Core SDK 2.1, Node and Angular Cli installed globally.
 #### Backend
 You can run the backend service in two ways.
 1. Open **EquipmentRental.sln** in visual studio. Clean and rebuild the solution and run the application from the Debug menu.
